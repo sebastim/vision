@@ -55,11 +55,6 @@ class Application(tk.Frame):
 
 #nous faisons saisir a l'utilisateur les mesures de son visage
 
-
-
-
-
-
 #Sert a calculer la distance entre deux points
 
 def distance(xa, ya, xb, yb):
