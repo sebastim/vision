@@ -1,0 +1,174 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Mar 31 11:08:59 2017
+
+@author: sebastim
+"""
+
+import  tkinter as tk 
+from PIL import Image, ImageTk 
+from math import *
+
+points = []
+last = None
+distTab = []
+distTab2 = []
+distTab3 = []
+distTab4 = []
+dist = 0
+global perfect #perfect represente la valeur de la perfection
+
+marge = 0.5 #marge represente la marge d'erreur autorisée
+
+
+def beautyTest(largeur, pupils):
+    perfect=0
+    c= (largeur*46)/100
+
+    if (abs(pupils-c)<marge) :
+        print("perfect a pris +25%")
+        perfect = 25
+    else :
+        print ("Vous n'avez pas les proportions requises, passez a la deuxieme etape.. sorry") 
+    print ("Votre score de perfection actuel est de ",perfect, "%","\n")
+    print ("Saisir la distance entre le centre de votre oeil et la queue de votre sourcil puis la hauteur de votre visage:","\n")
+
+def beautyEyes(eyes,hauteur):
+    perfect=0
+    d=(hauteur/10)
+    
+    if (abs(eyes-d)<marge) :
+        print("perfect a pris +25%")
+        perfect = perfect + 25
+    else :
+        print ("Vous n'avez pas les proportions requises, passez a la troisieme etape.. sorry") 
+    print ("Votre score de perfection actuel est de ",perfect, "%","\n")
+    print ("Saisir la distance entre votre menton et le bas de votre bouche, puis la hauteur de votre visage:","\n")
+    
+def beautyChin(chin,hauteur):
+    perfect=0
+    e=(hauteur/5)
+    
+    if (abs(chin-e)<marge) :
+        print("perfect a pris +25%")
+        perfect = perfect + 25
+    else :
+        print ("Vous n'avez pas les proportions requises, passez a la quatrieme etape.. sorry") 
+    print ("Votre score de perfection actuel est de ",perfect, "%","\n")
+    print ("Saisir la largeur de votre bouche, puis saisir la largeur de votre visage mesurée à la hauteur de la bouche:","\n")
+         
+def beautyMouth(mouth,largeurbouche):
+    f=(largeurbouche/2)
+    perfect=0
+    
+    if (abs(mouth-f)<marge):
+        print("perfect a pris +25%","\n")
+        perfect = perfect + 25 
+    else :
+        print ("Vous n'avez pas les proportions requises... sorry") 
+    print ("Votre score de perfection actuel est de ",perfect, "%","\n")
+    if perfect == 0:
+        print("RIP !!! T'es trop moche, sale asymetrique va :P", "\n")
+
+
+#Sert a faire la frame global
+
+class Application(tk.Frame):
+    def __init__(self, master=None):
+        tk.Frame.__init__(self, master)
+        self.pack()
+        self.createWidgets()
+        
+#Sert a faire un bouton pour quitter
+
+    def createWidgets(self):
+
+        self.QUIT = tk.Button(self, text="QUIT", fg="black",
+                                            command=root.destroy)
+        self.QUIT.pack()
+
+
+def boutonSimple():
+        perfect = 0
+        print(perfect, "%")
+        
+#Sert a calculer la distance entre deux points
+
+def distance(xa, ya, xb, yb):
+    
+    m = (xb-xa)**2
+    n = (yb-ya)**2
+    d = sqrt(m+n)
+    #distTab.append(d)
+    dist= round(d, 3) 
+    #print "La distance entre A et B est :",dist,"\n"
+    print ("\n", "Tableau des distances:")
+    for d in range(3):
+        break
+    return dist
+
+#Sert a obtenir les coordonnees en cliquant sur un point
+
+def pointeur(event):
+    #chaine.configure(text="Clique detecte en x="+str(event.x)+\
+    #                    ", Y =" + str(event.y))
+    chaine.configure(text="(%r, %r)" % (event.x, event.y))
+    
+    global points
+    global last
+    global distTab
+    global distTab2
+    Px = str(event.x)
+    Py = str(event.y)
+    if  (Px, Py) == last:
+        return
+    last =(Px, Py)
+    points.append((Px, Py))
+    print ("Tableau des couples de coordonnés:")
+    print (points) 
+    if len(points) < 2:
+        return
+    xa=int(points[0][0])
+    ya=int(points[0][1])
+    xb=int(points[1][0])
+    yb=int(points[1][1])
+
+    distTab.append(distance(xa, ya, xb, yb))
+    print (distTab,"\n") 
+   
+    if len(distTab) == 2:
+        beautyTest(*distTab)
+    
+    if len(distTab) == 4:
+        distTab2.append(distTab[2])
+        distTab2.append(distTab[3])
+        beautyEyes(*distTab2)
+        
+    if len(distTab) == 6:
+        distTab3.append(distTab[4])
+        distTab3.append(distTab[5])
+        beautyChin(*distTab3)
+        
+    if len(distTab) == 8:
+        distTab4.append(distTab[6])
+        distTab4.append(distTab[7])
+        beautyMouth(*distTab4)
+           
+points = []        
+
+root = tk.Tk() #Fenetre principale
+
+cadre = tk.Frame(root, width =500, height =300, bg="light blue")
+cadre.bind("<Button-1>", pointeur)
+cadre.pack()
+
+bouton = tk.Button(root, text='Taux de perfection', command = boutonSimple)
+bouton.pack()
+
+chaine = tk.Label(root)
+#chaine.bind("<Motion>", pointeur)
+chaine.pack()
+print ("saisir la largeur de votre visage puis la distance entre vos 2 pupilles","\n")
+#root.bind("<Double-Button-1>", pointeur)
+app = Application(master=root)
+app.mainloop()
