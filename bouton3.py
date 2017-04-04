@@ -44,7 +44,6 @@ def beautyEyes(eyes,hauteur):  #(description a ajouter)
         print("perfect a pris +25%")
         perfect = perfect + 25
     else :
-        perfect = perfect + 25
         print ("Vous n'avez pas les proportions requises, passez a la troisieme etape.. sorry") 
         print ("Votre score de perfection actuel est de ",perfect, "%","\n","\n")
         print ("***Saisir la distance entre votre menton et le bas de votre bouche, puis la hauteur de votre visage:","\n")
