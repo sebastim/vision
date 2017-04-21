@@ -24,7 +24,7 @@ marge = 0.5 #marge represente la marge d'erreur autorisee
 
 "FONCTIONS"
 
-def beautyTest(largeur, pupils): #(description a ajouter)
+def beautyTest(largeur, pupils): #largeur du visage et distance entre les 2 pupilles
     perfect=0
     c= (largeur*46)/100
 
@@ -36,7 +36,7 @@ def beautyTest(largeur, pupils): #(description a ajouter)
         print ("Votre score de perfection actuel est de ",perfect, "%","\n","\n")
         print ("**Saisir la distance entre le centre de votre oeil et la queue de votre sourcil puis la hauteur de votre visage:","\n")
 
-def beautyEyes(eyes,hauteur):  #(description a ajouter)
+def beautyEyes(eyes,hauteur):  # distance entre le centre de l'oeil et la queue du sourcil puis hauteur du visage
     perfect=0
     d=(hauteur/10)
     
@@ -49,7 +49,7 @@ def beautyEyes(eyes,hauteur):  #(description a ajouter)
         print ("Votre score de perfection actuel est de ",perfect, "%","\n","\n")
         print ("***Saisir la distance entre votre menton et le bas de votre bouche, puis la hauteur de votre visage:","\n")
         
-def beautyChin(chin,hauteur):  #(description a ajouter)
+def beautyChin(chin,hauteur):  #distance entre menton et bas de la bouche puis hauteur du visage
     perfect=0
     e=(hauteur/5)
     
@@ -61,7 +61,7 @@ def beautyChin(chin,hauteur):  #(description a ajouter)
         print ("Votre score de perfection actuel est de ",perfect, "%","\n","\n")
         print ("****Saisir la largeur de votre bouche, puis saisir la largeur de votre visage mesurée à la hauteur de la bouche:","\n")
              
-def beautyMouth(mouth,largeurbouche):  #(description a ajouter)
+def beautyMouth(mouth,largeurbouche):  # largeur de la bouche puis largeur du visage mesurée a la heuteur de la bouche
     f=(largeurbouche/2)
     perfect=0
     
