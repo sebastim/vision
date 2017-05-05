@@ -82,7 +82,7 @@ class Application(tk.Frame):  #Creation d'une frame global
         
     def createWidgets(self):  #Bouton pour quitter
 
-        self.QUIT = tk.Button(self, text="QUIT", fg="black", command=root.destroy)
+        self.QUIT = tk.Button(self, text="QUIT", fg="black", relief=RAISED, cursor="pirate",command=root.destroy)
         self.QUIT.pack()
 
 "Non fonctionnel encore"
@@ -154,12 +154,12 @@ def pointeur(event):  #Recupere les coordonnees d'un point en cliquant dessus
 
 root = tk.Tk() #Fenetre principale
 
-cadre = tk.Frame(root, width =500, height =300, bg="red")
+cadre = tk.Frame(root, relief=RAISED, cursor="tcross"width =500, height =300, bg="red")
 cadre.bind("<Button-1>", pointeur)
 cadre.bind("<Motion>", pointeurz)
 cadre.pack()
 
-bouton = tk.Button(root, text='Taux de perfection', command = boutonSimple)
+bouton = tk.Button(root, text='Taux de perfection',relief=RAISED, cursor="heart",  command = boutonSimple)
 bouton.pack()
 
 chaine = tk.Label(root)
