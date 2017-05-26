@@ -28,21 +28,13 @@ perfect = 0 #perfect represente le pourcentage de perfection
 
 dicimg = {}
 
-
-def chargerImage(): 
-    im=Image.open("vis.jpg") 
-    photo = ImageTk.PhotoImage(im) 
-    dicimg['img1'] = photo
-    item = cadre.create_image(125, 110, image = photo)
-
 def Open_file(label):
     "Function to open a file"
     image = tkFileDialog.askopenfile(parent=root,mode='rb',title='Choose a file')
     image = Image.open(image)
     photo = ImageTk.PhotoImage(image)
-    label.configure(image = photo)
-    label.image = photo
-
+    dicimg['img1'] = photo
+    item = cadre.create_image(250, 250, image = photo)
 
 def beautyTest(largeur, pupilles): #largeur du visage et distance entre les 2 pupilles
     global perfect
@@ -130,7 +122,7 @@ class Application(tk.Frame):  #Creation d'une frame global
 
 def boutonSimple():
         global perfect
-        print(round(perfect,2), "%")
+        print round(perfect,2), "%"
         
 def distance(xa, ya, xb, yb):  #Calcul de la distance entre deux points
     m = (xb-xa)**2
@@ -219,7 +211,7 @@ root = tk.Tk() #Fenetre principale
 #integration de l'ouverture d'image
 root.title("picture viewer")
 
-cadre = tk.Canvas(root, relief=RAISED, cursor="tcross") # width =500, height =300, bg="light blue")
+cadre = tk.Canvas(root, relief=RAISED, cursor="tcross", width =500, height =500, bg="light green")
 cadre.bind("<Button-1>", pointeur)
 cadre.bind("<Motion>", pointeurz)
 cadre.pack()
@@ -236,8 +228,8 @@ chaine.pack()
 coor = tk.Label(root)
 coor.pack()
 
-b = tk.Button(root, text='Import', command = chargerImage)
-b.pack()
+#b = tk.Button(root, text='Import', command = chargerImage)
+#b.pack()
 
 print ("*Saisir la largeur de votre visage puis la distance entre vos 2 pupilles\n")
 app = Application(master=root)
